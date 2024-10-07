@@ -3,7 +3,7 @@
 
     require_once 'Controlador/controlador.php';
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
-        $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Login';
+        $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar';
 
         switch ($opcion) {
             case 'Insertar':
@@ -25,7 +25,7 @@
                 modificarPagina($_GET['id']);
                 break;
             default:
-                include 'Html/Login.php';
+                include 'Html/Mostrar.php';
         }
     } else if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar';
