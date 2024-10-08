@@ -3,7 +3,7 @@
 
     require_once 'Controlador/controlador.php';
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
-        $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar';
+        $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'MostrarInici';
 
         switch ($opcion) {
             case 'Insertar':
@@ -18,6 +18,15 @@
             case 'Mostrar':
                 include 'Html/Mostrar.php';
                 break;
+            case 'MostrarInici':
+                include 'Html/MostrarInici.php';
+                break;
+            case 'Login':
+                include 'Html/Login.php';
+                break;
+            case 'SignUp':
+                include 'Html/SignUp.php';
+                break;
             case 'BorrarVerificar':
                 verificarDelet($_GET['id']);
                 break;
@@ -25,7 +34,7 @@
                 modificarPagina($_GET['id']);
                 break;
             default:
-                include 'Html/Mostrar.php';
+                include 'Html/MostrarInici.php';
         }
     } else if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar';
@@ -44,6 +53,9 @@
                     // Acción cuando se presiona el botón "No"
                     include 'Html/Borrar.php';
                 }
+                break;
+            case 'SignUp':
+                verificarDatos($_POST['username'],$_POST['correo'],$_POST['contra1'],$_POST['contra2']);
                 break;
             case 'Modificar':
                 modificar($_POST['boton'],$_POST['titulo'],$_POST['cuerpo']);

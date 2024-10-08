@@ -1,0 +1,124 @@
+/* Christian Torres Barrantes */
+:root {
+    color-scheme: light dark;
+  }
+  
+  body {
+      margin: 0;
+      padding: 0;
+  }
+
+  .container {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'content';
+    position: relative;
+}
+
+/*Barra de navegacion*/
+.nav-grid {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #333; 
+    align-items: center;
+    justify-items: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.nav-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.nav-bar ul {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar li {
+    background-color: gray;
+    padding: 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.nav-bar li a {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    width: 83%;
+}
+
+.nav-bar li:hover a {
+    background: #212120;
+}
+
+.nav-bar li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar li:hover .icon {
+    transform: scale(1.2);
+}
+
+.nav-bar li span {
+    transition: opacity 0.3s ease;
+    margin-top: 10px;
+}
+
+.nav-bar li:hover span {
+    opacity: 1;
+}
+
+
+
+  .content {
+    grid-area: content;
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 5%;
+}
+
+.articulo-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+    gap: 16px; /* Espacio entre los artículos */
+  }
+  
+  .articulo, .selectB, .selectM {
+    border: 1px solid #ccc; /* Opcional: un borde para los artículos */
+    padding: 16px; /* Opcional: espacio interno */
+    background-color: gray; /* Opcional: fondo para los artículos */
+    border-radius: 4px; /* Opcional: bordes redondeados */
+  }
+  
+  /* Fin de Mostrar los articulos en dos columnas*/
+  .titulo {
+      text-align: center;
+  }
+  
+  .texto{
+      text-align: justify;
+  }
+  
+  .content h1{
+    text-align: center;
+  }

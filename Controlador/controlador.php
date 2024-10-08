@@ -239,10 +239,10 @@
        $cos = isset($cuerpo) ? trim($cuerpo) : '';
        $verid = verificarId($id);
        if ($verid == true){
-       $mensaje = update($id,$titol,$cos);
-       include 'Html/ModificarArticulo.php';
+            $mensaje = update($id,$titol,$cos);
+            include 'Html/ModificarArticulo.php';
        } else{
-           echo "Fallo";
+           include 'Html/404.php';
        }
        
     }
@@ -254,4 +254,60 @@
         $verificar = selectOne($id);
         return $verificar ? true : false;
     }
+
+    /*
+    
+    */
+    function verificarDatos($username,$correo,$contra1,$contra2) {
+        $mensajes = array();
+        $mostrar = '';
+     
+    
+        $username = isset($username) ? trim(htmlspecialchars($username)) : '';
+        $correo = isset($correo) ? trim(htmlspecialchars($correo)) : '';
+        $contra1 = isset($contra1) ? trim(htmlspecialchars($contra1)) : '';
+        $contra2 = isset($contra2) ? trim(htmlspecialchars($contra2)) : '';
+
+        if (empty($username)) {
+            $mensajes[] = "El campo del Username no puede estar vacio";
+        }
+
+        if (empty($correo)) {
+            $mensajes[] = "El campo del correo no puede estar vacio";
+        }
+
+        if(empty($contra1)) {
+            $mensajes[] = "El campo de la contraseña no puede estar vacio";
+        } elseif (empty($contra2)){
+            $mensajes[] = "Por favor repita la contraseña.";
+        }
+    
+
+    
+        
+        $result = usrExist($username,$correo);
+        if ($result > 0) {
+            echo "El nombre de usuario o el email ya están registrados.";
+        } else {
+            if ($contra1 == $contra2){
+                // Encriptar la contraseña
+            $hashed_password = password_hash($contra1, PASSWORD_DEFAULT);
+            
+            
+            $stmt = insertarUsuario($username,$correo,$hashed_password);
+            if ($stmt) {
+                $mensajes[] = "Registro exitoso. Ahora puedes iniciar sesión.";
+                header("index.php?pagina=Login");
+                exit();
+            } else {
+                $mensajes[] = "Error al registrar el usuario.";
+            }
+            } else {
+                $mensajes[] = "Las contraseñas no coinciden.";
+            }
+        }
+    
+    include 'Html/SignUp.php';
+    }
+
 ?>
