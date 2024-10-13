@@ -26,13 +26,16 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `articles`
 --
+DROP DATABASE IF EXISTS pt02_christian_torres;
+CREATE DATABASE IF NOT EXISTS pt02_christian_torres;
+USE pt02_christian_torres;
 
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `titol` varchar(255) NOT NULL,
+  `cos` text NOT NULL,
+  `creado_el` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modificado_el` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `user_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,7 +43,7 @@ CREATE TABLE `articles` (
 -- Volcado de datos para la tabla `articles`
 --
 
-INSERT INTO `articles` (`id`, `title`, `content`, `created_at`, `updated_at`, `user_id`) VALUES
+INSERT INTO `articles` (`id`, `titol`, `cos`, `creado_el`, `modificado_el`, `user_id`) VALUES
 (1, 'Mi primer artículo', 'Este es el contenido de mi primer artículo', '2024-10-07 15:44:00', '2024-10-07 15:44:00', 1);
 
 -- --------------------------------------------------------
@@ -54,14 +57,14 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `creado_el` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `creado_el`) VALUES
 (1, 'admin', 'admin@ejemplo.com', '$2y$10$usG4D6u9FnA9fKcFo7kGpuyKbms/Y6ZzzLsSCFl/CTzH9uxs4iz3G', '2024-10-07 15:44:00');
 
 --

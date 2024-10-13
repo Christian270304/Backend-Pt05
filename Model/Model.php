@@ -3,7 +3,6 @@
 
     // Requerir la conexion para poder hacer gestiones en la base de datos
     require_once 'conexion.php';
-    
     /*
         Funcion para agarrar todos los campos de articles en la base de datos.
     */
@@ -24,17 +23,35 @@
         return $articles;
     }
 
+    function selectUsuario($user_id){
+        global $conn;
+        $query = "SELECT * FROM articles WHERE user_id = :user_id";
+        $statement = $conn->prepare($query);
+        $statement->execute([':user_id' => $user_id]);
+        $resultado = $statement->fetchAll();
+        $articles = [];
+        foreach ($resultado as $row) {
+            $articles[] = [
+                'id' => $row['id'],
+                'titol' => $row['titol'],
+                'cos' => $row['cos']
+            ];
+        }
+        return $articles;
+    }
+
     /*
         Funcion para insertar el nuevo articulo del usuario a la base de datos.
     */
-    function insertar($titulo, $cuerpo){
+    function insertar($titulo, $cuerpo,$user_id){
         global $conn;
-        $query = "INSERT INTO articles (titol,cos) VALUES (:titol,:cos)";
+        $query = "INSERT INTO articles (titol,cos,user_id) VALUES (:titol,:cos,:user_id)";
         $statement = $conn->prepare($query);
         $statement->execute( 
             array(
             ':titol' => $titulo, 
-            ':cos' => $cuerpo)
+            ':cos' => $cuerpo,
+            ':user_id' => $user_id)
         );
         
         if ($statement->rowCount() > 0) {
@@ -155,5 +172,15 @@
         $stmt = $conn->prepare($query);
         $stmt->execute([':username' => $username, ':correo' => $corre, ':contra' => $contra]);
         return $stmt;
+    }
+
+    
+
+    function idUsuario($username) {
+        global $conn;
+        $query = "SELECT id FROM users WHERE username = :username";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([':username' => $username]);
+        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
     }
 ?>

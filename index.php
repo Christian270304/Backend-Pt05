@@ -2,6 +2,9 @@
     // Christian Torres Barrantes
 
     require_once 'Controlador/controlador.php';
+    require_once 'Controlador/LoginControlador.php';
+    session_start();
+   
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
         $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'MostrarInici';
 
@@ -16,6 +19,9 @@
                 include 'Html/Modificar.php';
                 break;
             case 'Mostrar':
+                if (isset($_SESSION['username'])){
+
+                }
                 include 'Html/Mostrar.php';
                 break;
             case 'MostrarInici':
@@ -34,7 +40,11 @@
                 modificarPagina($_GET['id']);
                 break;
             default:
-                include 'Html/MostrarInici.php';
+            if (!isset($_SESSION['username'])){
+                header("Location: Html/MostrarInici.php");
+                exit;
+            }
+               
         }
     } else if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $opcion = isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar';
@@ -53,6 +63,9 @@
                     // Acción cuando se presiona el botón "No"
                     include 'Html/Borrar.php';
                 }
+                break;
+            case 'Login':
+                loginDatos($_POST['username'],$_POST['contra']);
                 break;
             case 'SignUp':
                 verificarDatos($_POST['username'],$_POST['correo'],$_POST['contra1'],$_POST['contra2']);

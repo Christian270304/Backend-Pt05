@@ -2,13 +2,13 @@
     // Christian Torres Barrantes
 
     $servername = "localhost";
-    $username = "root";
+    $usernamebd = "root";
     $password = "";
     $dbname = "pt02_christian_torres";
 
     try {
         // Cremos una conexion PDO.
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password); 
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $usernamebd, $password); 
     } catch (PDOException $e) {
         die("Error al conectar a la base de datos: " . $e->getMessage());
     }

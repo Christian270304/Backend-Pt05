@@ -3,13 +3,56 @@
 
     require_once 'Model/Model.php';
     
+    
+
     /* Funcion para mostrar los articulos, con tres posibilidades. 
         $click = Boolean dependiendo de si los articulos tienen que tener la opcion de ser clickable.
         $cat = String que define si es de la categoria Borrar o Modificar.
     */
-    function mostrarArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5) {
+    function mostrarTodosArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5) {
         $article_data = '<div class="articulo-container">'; // Contenedor para los artículos.
         $articles = select(); // Obtener los artículos de la base de datos
+        
+        // Verificar si hay artículos
+        if (empty($articles)) {
+            return '<h1>No hi han articles a la base de dades.</h1>';
+        }
+    
+        // Calcular el número total de artículos
+        $totalArticles = count($articles);
+        $startIndex = ($page - 1) * $articlesPerPage;
+        $endIndex = min($startIndex + $articlesPerPage, $totalArticles);
+    
+        // Mostrar artículos según la página
+        for ($i = $startIndex; $i < $endIndex; $i++) {
+            $article = $articles[$i];
+            if (!$click && $cat == 'Mostrar') {
+                $article_data .= '<div class="articulo" id="' . $article['id'] . '">';
+                $article_data .= '<h2 class="titulo">' . $article['titol'] . '</h2>';
+                $article_data .= '<p class="texto">' . $article['cos'] . '</p>';
+                $article_data .= '</div>';
+            } elseif ($cat == 'Borrar') {
+                $article_data .= '<button onclick="redireccion(' . $article['id'] . ')" class="selectB" id="' . $article['id'] . '">';
+                $article_data .= '<h2 class="titulo">' . $article['titol'] . '</h2>';
+                $article_data .= '<p class="texto">' . $article['cos'] . '</p>';
+                $article_data .= '</button>';
+            } else { // Para la opción de Modificar
+                $article_data .= '<button onclick="redireccion(' . $article['id'] . ')" class="selectM" id="' . $article['id'] . '">';
+                $article_data .= '<h2 class="titulo">' . $article['titol'] . '</h2>';
+                $article_data .= '<p class="texto">' . $article['cos'] . '</p>';
+                $article_data .= '</button>';
+            }
+        }
+    
+        $article_data .= '</div>'; // Cerrar el contenedor de artículos
+        $article_data .= generarPaginacion($page,$articlesPerPage,$cat);
+        return $article_data;
+    }
+
+    function mostrarArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5) {
+        $article_data = '<div class="articulo-container">'; // Contenedor para los artículos.
+        $user_id = idUsuario($_SESSION['username']);
+        $articles = selectUsuario($user_id); // Obtener los artículos de la base de datos
         
         // Verificar si hay artículos
         if (empty($articles)) {
@@ -127,7 +170,7 @@
     function insertarDatos($titulo,$cuerpo){
         $mensajes= array();
         $mostrar = '';
-
+        $user_id = idUsuario($_SESSION['username']);
 
         $titol = isset($titulo) ? trim(htmlspecialchars($titulo)) : '';
         $cos = isset($cuerpo) ? trim(htmlspecialchars($cuerpo)) : '';
@@ -141,7 +184,7 @@
          
         $id = selectId($titol,$cos);
         if ($id == null){
-            $resultado = insertar($titol, $cos);
+            $resultado = insertar($titol, $cos, $user_id);
             $mostrar .= '<div id="caja_mensaje" class="enviar">' . $resultado . '</div>';
         } else {
             $mensajes[] = 'Este articulo ya existe';
@@ -260,7 +303,7 @@
     */
     function verificarDatos($username,$correo,$contra1,$contra2) {
         $mensajes = array();
-        $mostrar = '';
+        $mensaje = '';
      
     
         $username = isset($username) ? trim(htmlspecialchars($username)) : '';
@@ -306,8 +349,18 @@
                 $mensajes[] = "Las contraseñas no coinciden.";
             }
         }
+
+        if (!empty($mensajes)) {
+            $mensaje .= '<div id="caja_mensaje" class="errors">';
+            foreach ($mensajes as $mensaje) {
+                $mensaje .= $mensaje . '<br/>';
+            }
+            $mensaje.= '</div>';
+        }
     
     include 'Html/SignUp.php';
     }
+
+    
 
 ?>
