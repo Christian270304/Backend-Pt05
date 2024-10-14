@@ -6,6 +6,7 @@
     /*
         Funcion para agarrar todos los campos de articles en la base de datos.
     */
+    /*
     function select(){
         global $conn;
         $query = "SELECT * FROM articles";
@@ -39,7 +40,7 @@
         }
         return $articles;
     }
-
+*/
     /*
         Funcion para insertar el nuevo articulo del usuario a la base de datos.
     */
@@ -66,6 +67,7 @@
     /*
         Funcion para borrar el articulo que ha seleccionado el usuario mediante el id.
     */
+    /*
     function borrarArticle($id){
         global $conn;
         if (!$conn) {
@@ -80,7 +82,7 @@
             return "Error al borrar el artículo";
         }
     }
-
+*/
     /*
         Funcion para seleccionar un articulo mediante el id.
     */
@@ -96,6 +98,7 @@
     /*
         Funcion para agarrar el titulo y el cuerpo de un articulo mediante su id.
     */
+    /*
     function selectTitolCos($id){
         global $conn;
         $query = "SELECT titol,cos FROM articles WHERE id = :id"; // Sentencia sql.
@@ -111,10 +114,11 @@
         }
         return $articles;
     }
-
+*/
     /*
         Funcion para seleccionar el id de un articulo mediante el titulo y el cuerpo.
     */
+    /*
     function selectId($titol,$cos){
         global $conn;
         $sql = "SELECT id FROM articles WHERE titol = :titol AND cos = :cos"; // Sentencia sql.
@@ -123,7 +127,7 @@
         $result = $statement->fetch(PDO::FETCH_ASSOC); // Obtener el resultado como un array asociativo.
         return $result ? $result['id'] : null; // Verificar si hay resultados y devolver el ID, o null si no se encuentra.
     }
-
+*/
     /*
         Funcion para updatear el articulo que el usuario ha modificado.
     */
@@ -142,6 +146,7 @@
     /*
         Funcion para contar cuantos articulos hay dentro de la base de datos.
     */
+    /*
     function countArticles() {
         global $conn; // Asegúrate de que $db esté disponible
         $query = "SELECT COUNT(*) FROM articles"; // Reemplaza con tu consulta real
@@ -150,7 +155,7 @@
         
         return $stmt->fetchColumn(); // Devuelve el número total de artículos
     }
-
+*/
     /*
 
     */

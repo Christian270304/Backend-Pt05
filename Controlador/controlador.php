@@ -9,6 +9,7 @@
         $click = Boolean dependiendo de si los articulos tienen que tener la opcion de ser clickable.
         $cat = String que define si es de la categoria Borrar o Modificar.
     */
+    /*
     function mostrarTodosArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5) {
         $article_data = '<div class="articulo-container">'; // Contenedor para los artículos.
         $articles = select(); // Obtener los artículos de la base de datos
@@ -89,12 +90,13 @@
         $article_data .= generarPaginacion($page,$articlesPerPage,$cat);
         return $article_data;
     }
-
+*/
     /*
         Funcion para crear la paginacion en las paginas.
         $page El numero de pagina en la que esta el usuario.
         $articlesPerPage El numero de articulos por pagina
     */
+    /*
     function generarPaginacion($pagina, $articlesPerPage,$cat) {
         $articles = select(); // Obtener todos los artículos
         $totalArticles = count($articles); // Calcular el número total de artículos
@@ -140,11 +142,12 @@
         $pagination .= '</div>'; 
         return $pagination;
     }
-
+*/
 
     /*
         Funcion para validar los numeros de pagina y articulos por pagina de la url.
     */
+    /*
     function validarEntero($parametro, $valorPorDefecto, $min = 1, $max = PHP_INT_MAX) {
         if (isset($_GET[$parametro]) && filter_var($_GET[$parametro], FILTER_VALIDATE_INT)) {
             $valor = (int)$_GET[$parametro];
@@ -154,59 +157,21 @@
         }
         return $valorPorDefecto;
     }
-
+*/
     /*
         Funcion que retorna el total de articulos que hay en la base de datos.
     */
+    /*
     function totArticles(){
         return countArticles();
     }
-
-    /*
-        Funcion para poder insertar los articulos a la base de datos.
-        $titulo = El titulo del articulo 
-        $cuerpo = El cuerpo de
-    */
-    function insertarDatos($titulo,$cuerpo){
-        $mensajes= array();
-        $mostrar = '';
-        $user_id = idUsuario($_SESSION['username']);
-
-        $titol = isset($titulo) ? trim(htmlspecialchars($titulo)) : '';
-        $cos = isset($cuerpo) ? trim(htmlspecialchars($cuerpo)) : '';
-
-        if (empty($titol)) {
-            $mensajes[] = 'El campo del titulo no puede estar vacio';
-        }
-        if (empty($cos)) {
-            $mensajes[] = 'El campo del cuerpo no puede estar vacio';
-        }
-         
-        $id = selectId($titol,$cos);
-        if ($id == null){
-            $resultado = insertar($titol, $cos, $user_id);
-            $mostrar .= '<div id="caja_mensaje" class="enviar">' . $resultado . '</div>';
-        } else {
-            $mensajes[] = 'Este articulo ya existe';
-        }
-        
-        // Generar mensajes de error
-        if (!empty($mensajes)) {
-            $mostrar .= '<div id="caja_mensaje" class="errors">';
-            foreach ($mensajes as $mensaje) {
-                $mostrar .= $mensaje . '<br/>';
-            }
-            $mostrar .= '</div>';
-        }
-        
-
-        include 'Html/Insertar.php';
-    }
+*/
+    
     
     /*
         Funcion para mostrar el titulo y el cuerpo dentro de la pagina BorrarVerificar.
     */
-    
+   /* 
     function verificarDelet($id)  {
         $ids = isset($id) ? trim(htmlspecialchars($id)) : '';
         $verificar = verificarId($ids);
@@ -227,10 +192,11 @@
         
         
     }
-
+*/
     /*
         Funcion para borrar el articulo que ha seleccionado el usuario.
     */
+    /*
     function borrar($titulo,$cuerpo)  {
         $titol = isset($titulo) ? trim($titulo) : '';
         $cos = isset($cuerpo) ? trim($cuerpo) : '';
@@ -243,7 +209,7 @@
         }
         
     }
-
+*/
      
      /*
         Funcion para mostrar los datos del articulo que ha seleccionado el usuario en la pagina de ModificarArticulo.
@@ -340,7 +306,7 @@
             $stmt = insertarUsuario($username,$correo,$hashed_password);
             if ($stmt) {
                 $mensajes[] = "Registro exitoso. Ahora puedes iniciar sesión.";
-                header("index.php?pagina=Login");
+                header("Location: index.php?pagina=Login");
                 exit();
             } else {
                 $mensajes[] = "Error al registrar el usuario.";

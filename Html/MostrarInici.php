@@ -25,7 +25,7 @@
                 $totalArticulos = totArticles(); // Obtener el total de artículos
                 ?>
                 <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? (int)$_GET['page'] : 1; ?>">
-                <input type="hidden" name="pagina" value="<?php echo isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar'; ?>">
+                <input type="hidden" name="pagina" value="<?php echo isset($_GET['pagina']) ? $_GET['pagina'] : 'MostrarInici'; ?>">
                 <input type="number" name="articulosPorPagina" id="articulosPorPagina" 
                     value="<?php echo isset($_GET['articulosPorPagina']) ? $_GET['articulosPorPagina'] : 5; ?>" 
                     min="1" max="<?php echo $totalArticulos; ?>">
@@ -37,7 +37,7 @@
             $paginaActual = validarEntero('page', 1, 1, ceil($totalArticulos / 1));
             $articulosPorPagina = validarEntero('articulosPorPagina', 5, 1, $totalArticulos); // Número de artículos por página
 
-            echo mostrarTodosArticulos(false, 'Mostrar' , $paginaActual, $articulosPorPagina);  // Usar el valor de artículos por página
+            echo mostrarTodosArticulos(false, 'MostrarInici' , $paginaActual, $articulosPorPagina);  // Usar el valor de artículos por página
             ?>
         </div>
     </div>

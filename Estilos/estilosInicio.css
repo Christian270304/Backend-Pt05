@@ -122,3 +122,56 @@
   .content h1{
     text-align: center;
   }
+
+  /* Paginacion */
+.pagination {
+    justify-items: center;
+    justify-content: center;
+      position: fixed; /* Fija la barra de paginación */
+      bottom: 20px; /* Espacio desde el fondo */
+      left: 56.1%; /* Centra horizontalmente */
+      transform: translateX(-50%); /* Compensa el desplazamiento de la mitad del ancho */
+      padding: 10px; /* Espaciado interno */
+      border-radius: 5px; /* Bordes redondeados */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de elevación */
+      z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  }
+  
+  .pagination a {
+    padding: 10px 15px; /* Espaciado interno para los enlaces */
+    margin: 0 5px; /* Espaciado entre enlaces */
+    text-decoration: none; /* Quitar subrayado */
+    color: #007BFF; /* Color del texto */
+    background-color: white;
+    border: 1px solid #007BFF; /* Borde del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+  }
+  
+  .pagination a:hover {
+    background-color: #007BFF; /* Color de fondo al pasar el ratón */
+    color: white; /* Color del texto al pasar el ratón */
+  }
+  
+  .current-page {
+    padding: 10px 15px; /* Espaciado interno para la página actual */
+    margin: 0 5px; /* Espaciado entre la página actual y los demás enlaces */
+    background-color: #007BFF; /* Color de fondo para la página actual */
+    color: white; /* Color del texto para la página actual */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  
+  .arrow {
+    padding: 10px 15px; /* Espaciado interno */
+    margin: 0 5px; /* Espaciado entre enlaces */
+    text-decoration: none; /* Quitar subrayado */
+    color: #007BFF; /* Color del texto */
+    border: 1px solid #007BFF; /* Borde del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+  }
+  
+  .arrow:hover {
+    background-color: #007BFF; /* Color de fondo al pasar el ratón */
+    color: white; /* Color del texto al pasar el ratón */
+  }

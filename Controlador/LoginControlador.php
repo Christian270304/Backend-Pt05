@@ -22,7 +22,6 @@
         if (empty($mensajes)) {
             // Buscar usuario en la base de datos
             $result = buscarUsuario($username);
-            var_dump($result);
             if ($result) {
                 // Verificar la contraseña con el hash
                 if (password_verify($contra, $result['password'])) {
