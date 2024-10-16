@@ -10,14 +10,15 @@
 <body>
     
     <div class="container"> 
-        <div class="nav-grid">
-            <nav class="nav-bar">
-                <ul>
-                    <li><a href="index.php?pagina=Login"><span>Iniciar Sesion</span></a></li>
-                    <li><a href="index.php?pagina=SignUp"><span>Crear Cuenta</span></a></li>
-                </ul>
-            </nav>
+    <div class="menu">
+        <div class="account-icon">
+            <img src="Imagenes/account.svg" alt="Cuenta">
+            <ul class="dropdown">
+                <li><a href="index.php?pagina=Login">Iniciar Sesión</a></li>
+                <li><a href="index.php?pagina=SignUp">Crear Cuenta</a></li>
+            </ul>
         </div>
+    </div>
         <div class="content">
             <form method="get" action="">
                 <label for="articulosPorPagina">Artículos por página:</label>

@@ -85,6 +85,7 @@
             case 'BorrarVerificar':
                 if ($_POST['boton'] === 'Si') {
                     // Acción cuando se presiona el botón "Sí"
+                    require_once 'Controlador/Borrar.php';
                     borrar($_POST['titulo'],$_POST['cuerpo']);
                 } elseif ($_POST['boton'] === 'No') {
                     // Acción cuando se presiona el botón "No"

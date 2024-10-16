@@ -20,10 +20,11 @@ body {
 
 .nav-grid {
   grid-area: nav;
+  display: flex;
   min-height: 100vh;
   background-color: #333; 
   align-items: center;
-  justify-items: center;
+  height: 100vh;
 }
 
 .nav-bar {
@@ -34,10 +35,7 @@ body {
   padding: 30px;
   position: sticky;
   top: 0;
-  max-height: 100vh;
-  min-width: 5vw;
   width: fit-content;
-  padding-top: 80%;
 }
 
 .nav-bar ul {
