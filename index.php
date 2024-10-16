@@ -1,12 +1,12 @@
 <?php
     // Christian Torres Barrantes
 
-    require_once 'Controlador/controlador.php';
+    //require_once 'Controlador/controlador.php';
     
     
     
-    require_once 'Controlador/Borrar.php';
-    require_once 'Controlador/Modificar.php';
+    //require_once 'Controlador/Borrar.php';
+    //require_once 'Controlador/Modificar.php';
     session_start();
    
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -49,16 +49,18 @@
                 }
                 break;
             case 'Login':
-                require_once 'Controlador/LoginControlador.php';
+                require_once 'Controlador/Login.php';
                 include 'Html/Login.php';
                 break;
             case 'SignUp':
                 include 'Html/SignUp.php';
                 break;
             case 'BorrarVerificar':
+                require_once 'Controlador/Borrar.php';
                 verificarDelet($_GET['id']);
                 break;
             case 'ModificarArticulo':
+                require_once 'Controlador/Modificar.php';
                 modificarPagina($_GET['id']);
                 break;
             default:
@@ -86,17 +88,20 @@
                     borrar($_POST['titulo'],$_POST['cuerpo']);
                 } elseif ($_POST['boton'] === 'No') {
                     // Acción cuando se presiona el botón "No"
+                    require_once 'Controlador/Borrar.php';
                     include 'Html/Borrar.php';
                 }
                 break;
             case 'Login':
-                require_once 'Controlador/LoginControlador.php';
+                require_once 'Controlador/Login.php';
                 loginDatos($_POST['username'],$_POST['contra']);
                 break;
             case 'SignUp':
+                require_once 'Controlador/Login.php';
                 verificarDatos($_POST['username'],$_POST['correo'],$_POST['contra1'],$_POST['contra2']);
                 break;
             case 'Modificar':
+                require_once 'Controlador/Modificar.php';
                 modificar($_POST['boton'],$_POST['titulo'],$_POST['cuerpo']);
                 break;
             default:

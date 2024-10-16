@@ -156,4 +156,13 @@
         $user_id = idUsuario($_SESSION['username']);
         return countArticles($user_id);
     }
+
+    /*
+        Funcion para verificar si el id pasado por parametro exite dentro de la base de datos.
+        Devuelve true si el artículo existe, false si no.
+    */
+    function verificarId($id) {
+        $verificar = selectOne($id);
+        return $verificar ? true : false;
+    }
 ?>

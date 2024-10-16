@@ -1,4 +1,7 @@
 <?php
+    require_once 'conexion.php';
+
+
     function selectUsuario($user_id){
         global $conn;
         $query = "SELECT * FROM articles WHERE user_id = :user_id";
@@ -75,5 +78,25 @@
         $statement->execute([':titol' => $titol,':cos' => $cos]); // Ejecutar la consulta.  
         $result = $statement->fetch(PDO::FETCH_ASSOC); // Obtener el resultado como un array asociativo.
         return $result ? $result['id'] : null; // Verificar si hay resultados y devolver el ID, o null si no se encuentra.
+    }
+
+    function idUsuario($username) {
+        global $conn;
+        $query = "SELECT id FROM users WHERE username = :username";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([':username' => $username]);
+        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
+    }
+
+    /*
+        Funcion para seleccionar un articulo mediante el id.
+    */
+    function selectOne($id){
+        global $conn;
+        $sql = "SELECT * FROM articles WHERE id = :id"; // Sentencia sql.
+        $statement = $conn->prepare($sql); // Preparar la sentencia.
+        $statement->execute([':id' => $id]); // Ejecutar la consulta.
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result : null; // Retornar el resultado o null si no se encuentra
     }
 ?>

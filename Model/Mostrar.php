@@ -29,4 +29,12 @@
         
         return $stmt->fetchColumn(); 
     }
+
+    function idUsuario($username) {
+        global $conn;
+        $query = "SELECT id FROM users WHERE username = :username";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([':username' => $username]);
+        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
+    }
 ?>
