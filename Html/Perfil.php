@@ -1,28 +1,13 @@
-<!-- Christian Torres Barrantes -->
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Estilos/404.css">
-    <title>404</title>
-    
-
+    <link href="Estilos/estilos.css" rel="stylesheet">
+    <title>Perfil</title>
 </head>
-
 <body>
-
-    <div class="container">
-        <div class="account">
-            <div class="account-icon">
-                <img src="Imagenes/account.svg" alt="Cuenta">
-                <ul class="dropdown">
-                    <li><a href="index.php?pagina=Perfil">Perfil</a></li>
-                    <li><a href="index.php?pagina=MostrarInici">Cerrrar Sesion</a></li>
-                </ul>
-            </div>
-        </div>
+<div class="container">
         <div class="nav-grid">
             <nav class="nav-bar">
                 <ul>
@@ -33,19 +18,10 @@
                 </ul>
             </nav>
         </div>
-
-
         <div class="content">
-            <section class="error-container">
-                <span class="four"><span class="screen-reader-text">4</span></span>
-                <span class="zero"><span class="screen-reader-text">0</span></span>
-                <span class="four"><span class="screen-reader-text">4</span></span>
-            </section>
+            <p>Hola! <?php echo $_SESSION['username'] ?></p>
+            <li><a href="index.php?pagina=MostrarInici">Cerrrar Sesion</a></li>
         </div>
-
-
     </div>
-
 </body>
-
 </html>

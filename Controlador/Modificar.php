@@ -8,7 +8,7 @@ function mostrarArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5)
     
     // Verificar si hay artículos
     if (empty($articles)) {
-        return '<h1>No hi han articles a la base de dades.</h1>';
+        return '<h2>No tienes articulos para modificar</h2>';
     }
 
     // Calcular el número total de artículos

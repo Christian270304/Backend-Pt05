@@ -9,7 +9,7 @@
         
         // Verificar si hay artículos
         if (empty($articles)) {
-            return '<h1>No hi han articles a la base de dades.</h1>';
+            return '<h1>Aun no has creado ningun articulo 😔</h1>';
         }
 
         // Calcular el número total de artículos

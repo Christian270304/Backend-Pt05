@@ -328,3 +328,14 @@ Aqui lo que hago primero es ver cuantos articulos hay en la base de datos para q
 ```
 La función primero verifica si el parámetro que se pasa a través de la URL ($_GET[$parametro]) está definido y si es un número entero válido usando filter_var con el filtro FILTER_VALIDATE_INT. Si el valor del parámetro existe y es un entero válido, el valor se convierte a entero explícitamente con (int). Luego, la función comprueba si el valor entero obtenido está dentro del rango definido por $min y $max. Si el valor está en este rango, se devuelve.
 Si alguna de las verificaciones falla (por ejemplo, si el valor no es un entero válido, o no está en el rango adecuado, o el parámetro no existe), la función devuelve el valor por defecto ($valorPorDefecto).
+
+
+Para la parte de usuarios dejo aqui unos ejemplos de los usuarios con todos sus datos:
+
+username: 'eduardo_81' password: 'dL1jF4bB' correo: 'n551bjajq@yahoo.es'
+
+username: 'gorka_63' password: 'hRbO3kM1' correo: 'zrt5pg2i@lycos.es'
+
+username: 'franciscojesus_74' password: 'xG5rF3nB' correo: '65swvtqw3@caramail.com'
+
+username: 'merce_72' password: 'eI3iE1dE' correo: 'u3xtm8fwy@lycos.es'

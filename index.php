@@ -52,6 +52,9 @@
                 require_once 'Controlador/Login.php';
                 include 'Html/Login.php';
                 break;
+            case 'Perfil':
+                include 'Html/Perfil.php';
+                break;
             case 'SignUp':
                 include 'Html/SignUp.php';
                 break;

@@ -6,6 +6,7 @@
   body {
       margin: 0;
       padding: 0;
+      background-color: #1a1a2e;
   }
 
   .container {
@@ -27,12 +28,14 @@
 
 /* Estilo para el contenedor del icono */
 .account-icon {
+  
   position: relative;
   display: inline-block;
 }
 
 /* Estilo del icono */
 .account-icon img {
+  stroke:#ffffff;
   width: 40px;
   height: 40px;
   cursor: pointer;

@@ -12,10 +12,18 @@
 <body>
 
     <div class="container">
+        <div class="account">
+            <div class="account-icon">
+                <img src="Imagenes/account.svg" alt="Cuenta">
+                <ul class="dropdown">
+                    <li><a href="index.php?pagina=Perfil">Perfil</a></li>
+                    <li><a href="index.php?pagina=MostrarInici">Cerrrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="nav-grid">
             <nav class="nav-bar">
                 <ul>
-                    <li><a href="index.php?pagina=MostrarInici"><img class="icon" src="Imagenes/logout.svg"><span>Cerrar Sesion</span></a></li>
                     <li><a href="index.php?pagina=Mostrar"><img class="icon" src="Imagenes/newspaper.svg"><span>Articles</span></a></li>
                     <li><a href="index.php?pagina=Insertar"><img class="icon" src="Imagenes/add-square.svg"><span>Insertar Article</span></a></li>
                     <li><a href="index.php?pagina=Borrar"><img class="icon" src="Imagenes/delete-button.svg"><span>Borrar Article</span></a></li>

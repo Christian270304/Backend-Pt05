@@ -43,8 +43,6 @@ CREATE TABLE `articles` (
 -- Volcado de datos para la tabla `articles`
 --
 
-INSERT INTO `articles` (`id`, `titol`, `cos`, `creado_el`, `modificado_el`, `user_id`) VALUES
-(1, 'Mi primer artículo', 'Este es el contenido de mi primer artículo', '2024-10-07 15:44:00', '2024-10-07 15:44:00', 1);
 
 -- --------------------------------------------------------
 

@@ -6,6 +6,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #1a1a2e; /* Color de fondo opcional */
 }
 
 
@@ -24,7 +25,7 @@ body {
   min-height: 100vh;
   background-color: #333; 
   align-items: center;
-  height: 100vh;
+ position: fixed;
 }
 
 .nav-bar {
@@ -101,16 +102,88 @@ body {
 .nav-bar li:hover span {
   opacity: 1; 
 }
-
-
 /* Fin barra de navegacion*/
 
+/* Posicionar el contenedor del icono en la parte superior derecha */
+.account {
+  position: fixed;
+  top: 40px;
+  right: 100px;
+  z-index: 1000;
+}
+
+/* Estilo para el contenedor del icono */
+.account-icon {
+  
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo del icono */
+.account-icon img {
+  stroke:#ffffff;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Transiciones suaves */
+}
+
+/* Estilo del menú desplegable (oculto por defecto) */
+.account-icon .dropdown {
+  display: none;
+  position: absolute;
+  top: -20px; /* Alinea el menú exactamente en el lugar del icono */
+  right: -20px;
+  background-color: #333;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estilo de los enlaces dentro del desplegable */
+.account-icon .dropdown li {
+  list-style: none;
+}
+
+.account-icon .dropdown li a {
+  display: block;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  background-color: gray;
+  transition: background-color 0.3s ease;
+}
+
+.account-icon .dropdown li a:hover {
+  background-color: #212120; /* Color de fondo al pasar el ratón */
+}
+
+/* Cuando el ratón esté sobre el icono, desaparece el ícono y aparece el menú */
+.account-icon:hover img {
+  transform: scale(0.1); /* Reduce el tamaño del ícono a casi 0 */
+  opacity: 0; /* Elimina la visibilidad del ícono */
+}
+
+.account-icon:hover .dropdown {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/*   */
+
 .content {
-    grid-area: content;
-    padding-top: 5%;
-    padding-left: 20%;
-    padding-right: 20%;
+  grid-area: content;
+    display: flex;
+    flex-direction: column; 
+    padding-top: 2.5%;
     padding-bottom: 5%;
+    width: 100%; /* Asegúrate de que ocupe todo el ancho del contenedor */
+    max-width: 800px; /* Controla el ancho máximo del contenido */
+    margin: 0 30%; /* Para centrar horizontalmente en contenedores más grandes */
 }
 
 /* Mostrar los articulos en dos columnas */
@@ -121,6 +194,11 @@ body {
 }
 
 .articulo, .selectB, .selectM {
+  max-height: 50vh;
+  overflow: hidden; /* Ocultar contenido que se desborde verticalmente */
+  overflow-y: auto; /* Añadir barra de desplazamiento vertical si el contenido es demasiado largo */
+  word-wrap: break-word; /* Asegurar que las palabras largas se ajusten al contenedor */
+  text-overflow: ellipsis;
   border: 1px solid #ccc; /* Opcional: un borde para los artículos */
   padding: 16px; /* Opcional: espacio interno */
   background-color: gray; /* Opcional: fondo para los artículos */
@@ -130,13 +208,22 @@ body {
 /* Fin de Mostrar los articulos en dos columnas*/
 .titulo {
     text-align: center;
+   
 }
 
 .texto{
     text-align: justify;
+    text-size-adjust: auto;
 }
 
 .content h1{
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  text-align: center;
+}
+.content h2{
+  margin-block-start: 0%;
+  margin-block-end: 0%;
   text-align: center;
 }
 
