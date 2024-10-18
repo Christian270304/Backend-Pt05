@@ -8,7 +8,9 @@
     <link href="Estilos/estilosInicio.css" rel="stylesheet">
 </head>
 <body>
-    
+<?php if (isset($_GET['expired']) && $_GET['expired'] == 1) {   
+            echo "<script>alert('Su sesión ha expirado por inactividad. Por favor, inicie sesión nuevamente.');</script>";
+        }?>
     <div class="container"> 
     <div class="menu">
         <div class="account-icon">

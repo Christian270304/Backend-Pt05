@@ -39,11 +39,9 @@
 
         // Mostrar errores si existen
         if (!empty($mensajes)) {
-            $mensaje .= '<div id="caja_mensaje" class="errors">';
-            foreach ($mensajes as $error) {
-                $mensaje .= $error . '<br/>';
+            foreach ($mensajes as $errors) {
+                $mensaje .= $errors . '<br/>';
             }
-            $mensaje .= '</div>';
         }
 
         include 'Html/Login.php';
@@ -52,15 +50,15 @@
     /*
     
     */
-    function verificarDatos($username,$correo,$contra1,$contra2) {
+    function verificarDatos($username,$correo,$password1,$password2) {
         $mensajes = array();
         $mensaje = '';
      
     
         $username = isset($username) ? trim(htmlspecialchars($username)) : '';
         $correo = isset($correo) ? trim(htmlspecialchars($correo)) : '';
-        $contra1 = isset($contra1) ? trim(htmlspecialchars($contra1)) : '';
-        $contra2 = isset($contra2) ? trim(htmlspecialchars($contra2)) : '';
+        $contra1 = isset($password1) ? trim(htmlspecialchars($password1)) : '';
+        $contra2 = isset($password2) ? trim(htmlspecialchars($password2)) : '';
 
         if (empty($username)) {
             $mensajes[] = "El campo del Username no puede estar vacio";
@@ -72,42 +70,35 @@
 
         if(empty($contra1)) {
             $mensajes[] = "El campo de la contraseña no puede estar vacio";
-        } elseif (empty($contra2)){
+        } else if (empty($contra2)){
             $mensajes[] = "Por favor repita la contraseña.";
         }
-    
 
-    
-        
         $result = usrExist($username,$correo);
         if ($result > 0) {
-            echo "El nombre de usuario o el email ya están registrados.";
-        } else {
+            $mensajes[] = "El nombre de usuario o el email ya están registrados.";
+        } else if(empty($mensajes)){
             if ($contra1 == $contra2){
                 // Encriptar la contraseña
             $hashed_password = password_hash($contra1, PASSWORD_DEFAULT);
             
             
             $stmt = insertarUsuario($username,$correo,$hashed_password);
-            if ($stmt) {
-                $mensajes[] = "Registro exitoso. Ahora puedes iniciar sesión.";
-                header("Location: index.php?pagina=Login");
-                exit();
-            } else {
-                $mensajes[] = "Error al registrar el usuario.";
-            }
+                if ($stmt) {
+                    header("Location: index.php?pagina=Login");
+                    exit();
+                } else {
+                    $mensajes[] = "Error al registrar el usuario.";
+                }
             } else {
                 $mensajes[] = "Las contraseñas no coinciden.";
             }
+        }else {
+            foreach ($mensajes as $errors) {
+                $mensaje .= $errors . '<br/>';
+            }
         }
 
-        if (!empty($mensajes)) {
-            $mensaje .= '<div id="caja_mensaje" class="errors">';
-            foreach ($mensajes as $mensaje) {
-                $mensaje .= $mensaje . '<br/>';
-            }
-            $mensaje.= '</div>';
-        }
     
     include 'Html/SignUp.php';
     }

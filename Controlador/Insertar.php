@@ -22,13 +22,7 @@
             $mensajes[] = 'El campo del cuerpo no puede estar vacio';
         }
          
-        $id = selectId($titol,$cos);
-        if ($id == null){
-            $resultado = insertar($titol, $cos, $user_id);
-            $mostrar .= '<div id="caja_mensaje" class="enviar">' . $resultado . '</div>';
-        } else {
-            $mensajes[] = 'Este articulo ya existe';
-        }
+        
         
         // Generar mensajes de error
         if (!empty($mensajes)) {
@@ -37,6 +31,14 @@
                 $mostrar .= $mensaje . '<br/>';
             }
             $mostrar .= '</div>';
+        } else {
+            $id = selectId($titol,$cos);
+            if ($id == null){
+                $resultado = insertar($titol, $cos, $user_id);
+                $mostrar .= '<div id="caja_mensaje" class="enviar">' . $resultado . '</div>';
+            } else {
+                $mensajes[] = 'Este articulo ya existe';
+            }
         }
         
 

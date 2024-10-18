@@ -105,11 +105,16 @@
     gap: 16px; /* Espacio entre los artículos */
   }
   
-  .articulo, .selectB, .selectM {
-    border: 1px solid #ccc; /* Opcional: un borde para los artículos */
-    padding: 16px; /* Opcional: espacio interno */
-    background-color: gray; /* Opcional: fondo para los artículos */
-    border-radius: 4px; /* Opcional: bordes redondeados */
+  .articulo {
+    max-height: 20vh;
+  overflow: hidden; /* Ocultar contenido que se desborde verticalmente */
+  overflow-y: auto; /* Añadir barra de desplazamiento vertical si el contenido es demasiado largo */
+  word-wrap: break-word; /* Asegurar que las palabras largas se ajusten al contenedor */
+  text-overflow: ellipsis;
+  border: 1px solid #ccc; /* Opcional: un borde para los artículos */
+  padding: 16px; /* Opcional: espacio interno */
+  background-color: gray; /* Opcional: fondo para los artículos */
+  border-radius: 4px; /* Opcional: bordes redondeados */
   }
   
   /* Fin de Mostrar los articulos en dos columnas*/

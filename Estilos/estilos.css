@@ -194,7 +194,7 @@ body {
 }
 
 .articulo, .selectB, .selectM {
-  max-height: 50vh;
+  max-height: 20vh;
   overflow: hidden; /* Ocultar contenido que se desborde verticalmente */
   overflow-y: auto; /* Añadir barra de desplazamiento vertical si el contenido es demasiado largo */
   word-wrap: break-word; /* Asegurar que las palabras largas se ajusten al contenedor */

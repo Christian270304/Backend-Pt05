@@ -8,7 +8,7 @@
     <link href="Estilos/estilos.css" rel="stylesheet">
 </head>
 <body>
-    
+        
     <div class="container">
         <div class="account">
             <div class="account-icon">
@@ -52,5 +52,6 @@
             ?>
         </div>
     </div>
+    
 </body>
 </html>
