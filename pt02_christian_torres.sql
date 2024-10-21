@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2024 a las 17:45:49
+-- Tiempo de generación: 19-10-2024 a las 16:17:07
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,29 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pt02_christian_torres`
 --
-
+DROP DATABASE IF EXISTS pt02_christian_torres;
+CREATE DATABASE IF NOT EXISTS pt02_christian_torres;
+USE pt02_christian_torres;
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `articles`
 --
-DROP DATABASE IF EXISTS pt02_christian_torres;
-CREATE DATABASE IF NOT EXISTS pt02_christian_torres;
-USE pt02_christian_torres;
 
 CREATE TABLE `articles` (
-  `id` int(11) NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `titol` varchar(255) NOT NULL,
   `cos` text NOT NULL,
   `creado_el` timestamp NOT NULL DEFAULT current_timestamp(),
   `modificado_el` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_id` int(10) UNSIGNED DEFAULT NULL
+  `user_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `articles`
+-- Estructura de tabla para la tabla `tokens`
 --
 
+CREATE TABLE `tokens` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `expira` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -63,7 +70,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `creado_el`) VALUES
-(1, 'admin', 'admin@ejemplo.com', '$2y$10$usG4D6u9FnA9fKcFo7kGpuyKbms/Y6ZzzLsSCFl/CTzH9uxs4iz3G', '2024-10-07 15:44:00');
+(1, 'admin', 'admin@gmail.com', '$2y$10$dsMgJ6ZepuRmcqiFJesrbu08AIUZ/otBlaZ3uN8rFqW2j0XLf/gkG', '2024-10-19 14:16:02');
 
 --
 -- Índices para tablas volcadas
@@ -74,15 +81,21 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `creado_el`) VALUES
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id_users_id` (`user_id`);
+
+--
+-- Indices de la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`),
+  ADD UNIQUE KEY `token` (`token`);
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -92,7 +105,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -108,7 +127,13 @@ ALTER TABLE `users`
 -- Filtros para la tabla `articles`
 --
 ALTER TABLE `articles`
-  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `user_id_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  ADD CONSTRAINT `token_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

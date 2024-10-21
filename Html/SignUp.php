@@ -37,7 +37,7 @@
                 </svg>
                 <input autocomplete="off" id="logpass" placeholder="Repita la contraseña" class="input-field" name="contra2" type="password" value="<?php echo isset($contra2) ? $contra2 : ''; ?>"> 
             </div>
-            <div id="caja_mensaje" class="errors">
+            <div class="errors">
                 <?php echo isset($mensaje) ? $mensaje : '' ?>
             </div>
             <button class="btn" type="submit">Crear</button>

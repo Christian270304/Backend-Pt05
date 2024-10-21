@@ -332,6 +332,8 @@ Si alguna de las verificaciones falla (por ejemplo, si el valor no es un entero 
 
 Para la parte de usuarios dejo aqui unos ejemplos de los usuarios con todos sus datos:
 
+username: 'admin' password: 'Adm1n100!' correo: 'admin@gmail.com'
+
 username: 'eduardo_81' password: 'dL1jF4bB' correo: 'n551bjajq@yahoo.es'
 
 username: 'gorka_63' password: 'hRbO3kM1' correo: 'zrt5pg2i@lycos.es'

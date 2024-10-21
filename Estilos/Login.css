@@ -94,6 +94,9 @@ body {
     color: #ffeba7;
    }
 
+   .errors {
+    text-align: justify;
+   }
 
 
 .salir {
