@@ -14,15 +14,7 @@
 <body>
 
     <div class="container">
-        <div class="account">
-            <div class="account-icon">
-                <img src="Imagenes/account.svg" alt="Cuenta">
-                <ul class="dropdown">
-                    <li><a href="index.php?pagina=Perfil">Perfil</a></li>
-                    <li><a href="index.php?pagina=MostrarInici">Cerrrar Sesion</a></li>
-                </ul>
-            </div>
-        </div>
+    
         <div class="nav-grid">
             <nav class="nav-bar">
                 <ul>

@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'conexion.php';
 
 
@@ -27,9 +28,9 @@
         if (!$conn) {
             die("Error de conexión: ");
         }
-        $sql = "DELETE FROM articles WHERE id = :id"; // Sentencia sql.
-        $stmt = $conn->prepare($sql); // Preparar la sentencia.
-        $stmt->execute([':id' => $id]); // Ejecutar la consulta.
+        $sql = "DELETE FROM articles WHERE id = :id"; 
+        $stmt = $conn->prepare($sql); 
+        $stmt->execute([':id' => $id]); 
         if ($stmt->rowCount() > 0) {
             return "Se ha Borrado Correctamente";
         } else {
@@ -54,9 +55,9 @@
     */
     function selectTitolCos($id){
         global $conn;
-        $query = "SELECT titol,cos FROM articles WHERE id = :id"; // Sentencia sql.
-        $statement = $conn->prepare($query); // Preparar la sentencia.
-        $statement->execute([':id' => $id]); // Ejecutar la consulta.
+        $query = "SELECT titol,cos FROM articles WHERE id = :id";
+        $statement = $conn->prepare($query); 
+        $statement->execute([':id' => $id]); 
         $resultado = $statement->fetchAll();
         $articles = [];
         foreach ($resultado as $row) {
@@ -73,19 +74,22 @@
     */
     function selectId($titol,$cos){
         global $conn;
-        $sql = "SELECT id FROM articles WHERE titol = :titol AND cos = :cos"; // Sentencia sql.
-        $statement = $conn->prepare($sql); // Preparar la sentencia.
-        $statement->execute([':titol' => $titol,':cos' => $cos]); // Ejecutar la consulta.  
-        $result = $statement->fetch(PDO::FETCH_ASSOC); // Obtener el resultado como un array asociativo.
-        return $result ? $result['id'] : null; // Verificar si hay resultados y devolver el ID, o null si no se encuentra.
+        $sql = "SELECT id FROM articles WHERE titol = :titol AND cos = :cos"; 
+        $statement = $conn->prepare($sql); 
+        $statement->execute([':titol' => $titol,':cos' => $cos]);  
+        $result = $statement->fetch(PDO::FETCH_ASSOC); 
+        return $result ? $result['id'] : null; 
     }
 
+    /**
+     * Funcion para buscar el id de un usuario mediante el username.
+     */
     function idUsuario($username) {
         global $conn;
         $query = "SELECT id FROM users WHERE username = :username";
         $stmt = $conn->prepare($query);
         $stmt->execute([':username' => $username]);
-        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
+        return $stmt->fetchColumn(); 
     }
 
     /*
@@ -93,10 +97,10 @@
     */
     function selectOne($id){
         global $conn;
-        $sql = "SELECT * FROM articles WHERE id = :id"; // Sentencia sql.
-        $statement = $conn->prepare($sql); // Preparar la sentencia.
-        $statement->execute([':id' => $id]); // Ejecutar la consulta.
+        $sql = "SELECT * FROM articles WHERE id = :id"; 
+        $statement = $conn->prepare($sql);
+        $statement->execute([':id' => $id]); 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result : null; // Retornar el resultado o null si no se encuentra
+        return $result ? $result : null; 
     }
 ?>

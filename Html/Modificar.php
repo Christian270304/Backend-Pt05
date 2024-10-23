@@ -42,7 +42,7 @@
                 <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? (int)$_GET['page'] : 1; ?>">
                 <input type="hidden" name="pagina" value="<?php echo isset($_GET['pagina']) ? $_GET['pagina'] : 'Mostrar'; ?>">
                 <input type="number" name="articulosPorPagina" id="articulosPorPagina" 
-                    value="<?php echo isset($_GET['articulosPorPagina']) ? $_GET['articulosPorPagina'] : 5; ?>" 
+                    value="<?php echo isset($_GET['articulosPorPagina']) ? $_GET['articulosPorPagina'] : (isset($_COOKIE['articulosPorPagina_modificar']) ? $_COOKIE['articulosPorPagina_modificar'] : 5 ); ?>" 
                     min="1" max="<?php echo $totalArticulos; ?>">
                 <button type="submit">Actualizar</button>
             </form>
@@ -52,7 +52,7 @@
             $paginaActual = validarEntero('page', 1, 1, ceil($totalArticulos / 1));
             $articulosPorPagina = validarEntero('articulosPorPagina', 5, 1, $totalArticulos);
 
-            echo mostrarArticulos(true, 'Modificar' , $paginaActual, $articulosPorPagina);  // Usar el valor de artículos por página
+            echo mostrarArticulos(true, 'Modificar' , $paginaActual, (isset($_COOKIE['articulosPorPagina_modificar']) ? $_COOKIE['articulosPorPagina_modificar'] : $articulosPorPagina ));  // Usar el valor de artículos por página
             ?>
         </div>
     </div>

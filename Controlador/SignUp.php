@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'Model/SignUp.php';
 
     /*
@@ -20,6 +21,8 @@
     
         if (empty($correo)) {
             $mensajes[] = "El campo del correo no puede estar vacio";
+        } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $mensajes[] = 'El campo de email no es valido';
         }
     
         if (empty($contra1)) {

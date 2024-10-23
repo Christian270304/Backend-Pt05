@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'conexion.php';
 
     // Obtener usuario por correo

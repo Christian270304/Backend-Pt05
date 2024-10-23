@@ -1,6 +1,11 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'Model/RecuperarContra.php';
 
+    /**
+     * Funcion para recuperar la contraseña mediante un token.
+     * @email Parametro que nos indica el correo del usuario.
+     */
     function recuperarPassword($email){
         $correo = isset($email) ? trim(htmlspecialchars($email)) : '';
 

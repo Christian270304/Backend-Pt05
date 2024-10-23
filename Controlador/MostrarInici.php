@@ -1,4 +1,5 @@
 <?php 
+    // Christian Torres Barrantes
     require_once 'Model/MostrarInici.php';
 
     /* Funcion para mostrar los articulos, con tres posibilidades. 

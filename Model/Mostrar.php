@@ -1,6 +1,10 @@
 <?php 
+    // Christian Torres Barrantes
     require_once 'conexion.php';
 
+    /**
+     * Funcion para seleccionar todos los articulos del usuario que le pasamos por parametro.
+     */
     function selectUsuario($user_id){
         global $conn;
         $query = "SELECT * FROM articles WHERE user_id = :user_id";
@@ -30,11 +34,14 @@
         return $stmt->fetchColumn(); 
     }
 
+    /**
+     * Funcion para agarrar el id del usuario mediante su username.
+     */
     function idUsuario($username) {
         global $conn;
         $query = "SELECT id FROM users WHERE username = :username";
         $stmt = $conn->prepare($query);
         $stmt->execute([':username' => $username]);
-        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
+        return $stmt->fetchColumn(); 
     }
 ?>

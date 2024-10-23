@@ -1,4 +1,5 @@
 <?php 
+    // Christian Torres Barrantes
     require_once 'conexion.php';
     /*
         Funcion para agarrar todos los campos de articles en la base de datos.

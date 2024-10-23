@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'Model/RestablecerContra.php';
 
     function restablecerPassword($toke,$password1,$password2) {

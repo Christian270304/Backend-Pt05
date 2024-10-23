@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'conexion.php';
 
     function idUsuario($username) {
@@ -6,7 +7,7 @@
         $query = "SELECT id FROM users WHERE username = :username";
         $stmt = $conn->prepare($query);
         $stmt->execute([':username' => $username]);
-        return $stmt->fetchColumn(); // Esto devuelve solo el valor de la columna 'id'
+        return $stmt->fetchColumn(); 
     }
 
     /*
@@ -43,9 +44,9 @@
     */
     function selectOne($id){
         global $conn;
-        $sql = "SELECT * FROM articles WHERE id = :id"; // Sentencia sql.
-        $statement = $conn->prepare($sql); // Preparar la sentencia.
-        $statement->execute([':id' => $id]); // Ejecutar la consulta.
+        $sql = "SELECT * FROM articles WHERE id = :id"; 
+        $statement = $conn->prepare($sql); 
+        $statement->execute([':id' => $id]); 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result ? $result : null; // Retornar el resultado o null si no se encuentra
     }
@@ -55,9 +56,9 @@
     */
     function selectTitolCos($id){
         global $conn;
-        $query = "SELECT titol,cos FROM articles WHERE id = :id"; // Sentencia sql.
-        $statement = $conn->prepare($query); // Preparar la sentencia.
-        $statement->execute([':id' => $id]); // Ejecutar la consulta.
+        $query = "SELECT titol,cos FROM articles WHERE id = :id"; 
+        $statement = $conn->prepare($query); 
+        $statement->execute([':id' => $id]); 
         $resultado = $statement->fetchAll();
         $articles = [];
         foreach ($resultado as $row) {
@@ -74,9 +75,9 @@
     */
     function update($id,$titulo, $cuerpo){
         global $conn;
-        $query = "UPDATE articles SET titol = :titol , cos = :cos WHERE id = :id"; // Sentencia sql.
-        $statement = $conn->prepare($query); // Preparar la sentencia.
-        $statement->execute([':titol' => $titulo, ':cos' => $cuerpo,':id' => $id]); // Ejecutar la consulta.
+        $query = "UPDATE articles SET titol = :titol , cos = :cos WHERE id = :id"; 
+        $statement = $conn->prepare($query); 
+        $statement->execute([':titol' => $titulo, ':cos' => $cuerpo,':id' => $id]); 
         if ($statement->rowCount() > 0) {
             return "El artículo ha sido actualizado correctamente.";
         } else {

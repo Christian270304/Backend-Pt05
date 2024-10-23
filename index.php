@@ -1,19 +1,11 @@
 <?php
     // Christian Torres Barrantes
 
-    //require_once 'Controlador/controlador.php';
-    
-    
-    
-    //require_once 'Controlador/Borrar.php';
-    //require_once 'Controlador/Modificar.php';
     ini_set('session.gc_probability', 1);
     ini_set('session.gc_divisor', 100);
-    //ini_set('session.gc_maxlifetime', 30);
-    
 
     session_start();
-    $tiempo_max_inactividad = 1000; 
+    $tiempo_max_inactividad = 2400; 
 
     // Comprobar si el usuario está logueado
     if (isset($_SESSION['username'])) {
@@ -135,7 +127,7 @@
                 } elseif ($_POST['boton'] === 'No') {
                     // Acción cuando se presiona el botón "No"
                     require_once 'Controlador/Borrar.php';
-                    include 'Html/Borrar.php';
+                    header("Location: index.php?pagina=Borrar");
                 }
                 break;
             case 'Login':

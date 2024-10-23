@@ -1,12 +1,22 @@
 <?php 
+    // Christian Torres Barrantes
     require_once 'Model/Mostrar.php';
 
-
-    function mostrarArticulos($click = false, $cat, $page = 1, $articlesPerPage = 5) {
+    /** 
+     *Funcion para crear la paginacion en las paginas.
+     *$page El numero de pagina en la que esta el usuario.
+     *$articlesPerPage El numero de articulos por pagina
+    */
+    function mostrarArticulos($click = false, $cat, $page=1, $articlesPerPage) {
         $article_data = '<div class="articulo-container">'; // Contenedor para los artículos.
         $user_id = idUsuario($_SESSION['username']);
         $articles = selectUsuario($user_id); // Obtener los artículos de la base de datos
         
+        if (isset($_GET['articulosPorPagina'])) {
+            $articlesPerPage = intval($_GET['articulosPorPagina']);
+            setcookie('articulosPorPagina_mostrar', $articlesPerPage, time() + (86400 * 7), "/");  // Guardar cookie por 7 días
+        } 
+
         // Verificar si hay artículos
         if (empty($articles)) {
             return '<h1>Aun no has creado ningun articulo 😔</h1>';
@@ -55,6 +65,21 @@
         $totalArticles = count($articles); // Calcular el número total de artículos
         $totalPagines = ceil($totalArticles / $articlesPerPage); // Número total de páginas
         
+        
+
+        // Verificar si el usuario ha seleccionado manualmente una página (desde la URL)
+        if (isset($_GET['page'])) {
+            $pagina = intval($_GET['page']);  // Si está en la URL, usamos el valor de la página
+            // Actualizar la cookie solo si se seleccionó una nueva página
+            setcookie("ultima_pagina_mostrar", $pagina, time() + (86400 * 7), "/");
+        } elseif (isset($_COOKIE['ultima_pagina_mostrar'])) {
+            // Si no hay valor en la URL, usamos la página almacenada en la cookie
+            $pagina = intval($_COOKIE['ultima_pagina_mostrar']);
+        } else {
+            // Si no hay cookie ni valor en la URL, usamos la página 1 por defecto
+            $pagina = 1; 
+        }
+
         // Generar la barra de paginación
         $pagination = '<div class="pagination">';
     

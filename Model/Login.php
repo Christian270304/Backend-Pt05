@@ -1,4 +1,5 @@
 <?php
+    // Christian Torres Barrantes
     require_once 'conexion.php';
     // Buscar un usuario por nombre de usuario
     function buscarUsuario($username) {

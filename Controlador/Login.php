@@ -1,7 +1,12 @@
 <?php
-
+    // Christian Torres Barrantes
     require_once 'Model/Login.php';
 
+    /**
+     * Funcion que verifica los datos cuando el usuario se intena loguear.
+     * @user Parametro que nos indica el username del usuario.
+     * @password Parametro que nos indica la contraseña del usuario.
+     */
     function loginDatos($user, $password) {
         $mensajes = array();
         $mensaje = '';
