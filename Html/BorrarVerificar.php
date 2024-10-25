@@ -34,8 +34,8 @@
             <form class="formulario" method="POST" action="index.php?pagina=BorrarVerificar">
                 <div class="contenido">
                     <label><h1>Seguro que quiere borrar este articulo?</h1></label>
-                    <input type="text" id="titulo" value="<?php echo $titol; ?>" name="titulo" class="campos">
-                    <textarea id="cuerpo" name="cuerpo" class="mensaje"><?php echo $cos; ?></textarea>
+                    <input readonly type="text" id="titulo" value="<?php echo $titol; ?>" name="titulo" class="campos">
+                    <textarea readonly id="cuerpo" name="cuerpo" class="mensaje"><?php echo $cos; ?></textarea>
                     <?php  echo $mensaje?>
                     <div class="botones-contenedor">
                         <button class="btn" type="submit" name="boton" value="Si">Borrar</button>   
