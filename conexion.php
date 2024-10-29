@@ -4,7 +4,7 @@
     $servername = "localhost";
     $usernamebd = "root";
     $password = "";
-    $dbname = "pt02_christian_torres";
+    $dbname = "pt04_christian_torres";
 
     try {
         // Cremos una conexion PDO.

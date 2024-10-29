@@ -114,26 +114,24 @@ body {
 
 /* Estilo para el contenedor del icono */
 .account-icon {
-  
   position: relative;
   display: inline-block;
 }
 
 /* Estilo del icono */
 .account-icon img {
-  stroke:#ffffff;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Transiciones suaves */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: block;
 }
 
 /* Estilo del menú desplegable (oculto por defecto) */
 .account-icon .dropdown {
   display: none;
   position: absolute;
-  top: -20px; /* Alinea el menú exactamente en el lugar del icono */
-  right: -20px;
+  top: 10px; /* Alinea el menú exactamente en el lugar del icono */
+  right: 40px;
   background-color: #333;
   min-width: 150px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -171,6 +169,7 @@ body {
   display: block;
   opacity: 1;
   visibility: visible;
+  
 }
 
 /*   */
